@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, 'Segoe UI', 'Roboto', sans-serif;
+            background: #f0f2f5;
+            margin: 0;
+            padding: 30px 20px;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #475569;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #cbd5e1;
+            padding-bottom: 15px;
+        }
+
+        .tasks-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .task-section {
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: box-shadow 0.2s;
+        }
+
+        .task-section:hover {
+            box-shadow: 0 12px 28px rgba(0,0,0,0.1);
+        }
+
+        .section-header {
+            background: #1e293b;
+            color: white;
+            padding: 16px 24px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+
+        .section-content {
+            padding: 24px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .demo-element-area {
+            flex: 1.2;
+            min-width: 280px;
+        }
+
+        .buttons-area {
+            flex: 1;
+            min-width: 260px;
+            background: #f8fafc;
+            border-radius: 24px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .buttons-area h3 {
+            margin-top: 0;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+            color: #0f172a;
+            border-left: 4px solid #3b82f6;
+            padding-left: 12px;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: #eef2ff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #1e40af;
+            font-size: 0.85rem;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+        }
+
+        button:hover {
+            background: #cbdffc;
+            transform: translateY(-1px);
+        }
+
+        .test-element {
+            width: 300px;
+            height: 150px;
+            margin: 20px auto;
+            padding: 25px;
+            background: #CFF5BF;
+            border: 25px solid #F0D7A1;
+            overflow: auto;
+            text-align: justify;
+            font-family: monospace;
+            resize: both;
+            transition: all 0.1s ease;
+        }
+
+        .code-badge {
+            background: #e9ecef;
+            border-radius: 20px;
+            padding: 12px 18px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            margin-top: 15px;
+            color: #0b3b5f;
+        }
+
+        .output-console {
+            background: #0f172a;
+            color: #a5f3c3;
+            border-radius: 20px;
+            padding: 12px 18px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            margin-top: 16px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        hr {
+            margin: 20px 0;
+            border-color: #e2e8f0;
+        }
+
+        .note {
+            background: #fef9c3;
+            padding: 10px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 12px;
+        }
+
+        @media (max-width: 800px) {
+            .section-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1> Размеры, прокрутка и метрики элементов</h1>
+ 
+
+    <div class="tasks-grid">
+        <div class="task-section">
+            <div class="section-header"> 1. Клиентский размер (clientWidth / clientHeight)</div>
+            <div class="section-content">
+                <div class="demo-element-area">
+                    <div id="elem" class="test-element">
+                         Тестовый элемент с паддингом, границей и прокруткой. Нажмите на кнопки, чтобы увидеть разные метрики. Прокрутите меня, поэкспериментируйте! Добавим длинный текст для появления скролла: Lorem ipsum odor amet, consectetuer adipiscing elit. Himenaeos ullamcorper habitant metus suspendisse adipiscing condimentum. Bibendum rhoncus scelerisque rutrum netus, elit fames lacinia.
+                    </div>
+                    <div class="code-badge">
+                         #elem: width:300px; height:150px; padding:25px; border:25px solid; overflow:auto;
+                    </div>
+                </div>
+                <div class="buttons-area">
+                    <h3> Задания (client)</h3>
+                    <div class="button-group">
+                        <button id="btnClientMetrics">№1 </button>
+                    </div>
+                    <div class="output-console" id="consoleClient">
+                         Нажмите кнопку → результат появится здесь
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="task-section">
+            <div class="section-header"> 2. </div>
+            <div class="section-content">
+                <div class="demo-element-area">
+                    <div id="elemOffset" class="test-element">
+                         Этот же элемент: с границами и паддингами. offset включает border + padding + content.
+                    </div>
+                </div>
+                <div class="buttons-area">
+                    <h3> Задания </h3>
+                    <div class="button-group">
+                        <button id="btnOffsetMetrics">№1 ⊗jsSpMEFS </button>
+                        <button id="btnOffsetMinusClient"> №2 ⊗jsSpMEFS </button>
+                    </div>
+                    <div class="output-console" id="consoleOffset"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="task-section">
+            <div class="section-header"> 3. Размер с прокруткой </div>
+            <div class="section-content">
+                <div class="demo-element-area">
+                    <div id="elemScroll" class="test-element">
+                         Здесь много текста для прокрутки: Прокрутите меня вниз и вбок, чтобы увидеть всю спрятанную часть. scrollHeight показывает полную высоту контента, даже скрытую. 🧩 Вторая строка. Третья строка. Четвертая строка. Пятая строка. Шестая строка для демонстрации прокрутки.
+                    </div>
+                </div>
+                <div class="buttons-area">
+                    <h3> Задания </h3>
+                    <div class="button-group">
+                        <button id="btnScrollMetrics">№1 ⊗jsSpMESS </button>
+                        <button id="btnScrollMinusOffset"> №2 ⊗jsSpMESS </button>
+                    </div>
+                    <div class="output-console" id="consoleScroll"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="task-section">
+            <div class="section-header">🖱️ 4. Прокрутка: scrollTop, scrollLeft и полная прокрутка</div>
+            <div class="section-content">
+                <div class="demo-element-area">
+                    <div id="elemScrl" class="test-element">
+                        ⬇ Прокрутите этот блок вертикально и горизонтально! Добавим очень длинный контент, чтобы точно было видно скролл. Огромное количество текста: раз, два, три, четыре, пять, шесть, семь, восемь, девять, десять. Ещё строчка, чтобы появился скролл. Горизонтальный скролл: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                    </div>
+                </div>
+                <div class="buttons-area">
+                    <h3> scrollTop / scrollLeft + задачи №1-5</h3>
+                    <div class="button-group">
+                        <button id="btnGetScrollTop">№1 ⊗jsSpMESc </button>
+                        <button id="btnCheckScrolled">№2 ⊗jsSpMESc </button>
+                        <button id="btnScrollToEndFull">№3 ⊗jsSpMESc </button>
+                        <button id="btnCalcVisibleRemain">№4 ⊗jsSpMESc </button>
+                        <button id="btnComplexEquation">№5 ⊗jsSpMESc </button>
+                    </div>
+                    <div class="output-console" id="consoleScrollPos"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="task-section">
+            <div class="section-header"> 5. Управление прокруткой </div>
+            <div class="section-content">
+                <div class="demo-element-area">
+                    <div id="elemChange" class="test-element">
+                         Управляй прокруткой! Нажимай кнопки: установить 100px по вертикали, прокрутить вниз на 50px, в самый верх, в самый низ.
+                        Длинный контент для наглядности. Строка 1. Строка 2. Строка 3. Строка 4. Строка 5. Строка 6. Строка 7. Строка 8. Строка 9. Строка 10.
+                    </div>
+                </div>
+                <div class="buttons-area">
+                    <h3> Задания изменение прокрутки</h3>
+                    <div class="button-group">
+                        <button id="btnSet100_50">№1 ⊗jsSpMESCh </button>
+                        <button id="btnAdd50Down">№2 ⊗jsSpMESCh</button>
+                        <button id="btnScrollToTop">№3 ⊗jsSpMESCh </button>
+                        <button id="btnScrollToBottom">№4 ⊗jsSpMESCh </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="task-section">
+            <div class="section-header"> 6. Прокрутка до конца проверка конца</div>
+            <div class="section-content">
+                <div class="demo-element-area">
+                    <div id="elemEnd" class="test-element">
+                         Проверка прокрутки до конца. Нажми «Прокрутить вниз до конца» и кнопку проверки. Специальный текст, чтобы появился скролл.
+                        Строка A. Строка B. Строка C. Строка D. Строка E. Строка F. Строка G. Строка H.
+                    </div>
+                </div>
+                <div class="buttons-area">
+                    <h3> №1 ⊗jsSpMEES и №2 ⊗jsSpMEES</h3>
+                    <div class="button-group">
+                        <button id="btnScrollToVeryBottom">№1 </button>
+                        <button id="btnCheckEndScrolled">№2 </button>
+                    </div>
+                    <div class="output-console" id="consoleEnd"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="task-section">
+            <div class="section-header"> 7. Распахивание элемента (expand to scrollHeight)</div>
+            <div class="section-content">
+                <div class="demo-element-area">
+                    <div id="elemExpand" class="test-element" style="resize: none;">
+                         Этот элемент можно «распахнуть» на полную высоту / ширину. Нажми кнопку — и он станет высотой scrollHeight.
+                        Много текста для демонстрации: строчка раз, строчка два, строчка три, строчка четыре, строчка пять, чтобы появилась прокрутка. Обрати внимание: после распахивания пропадает скролл.
+                    </div>
+                </div>
+                <div class="buttons-area">
+                    <h3> №1 ⊗jsSpMEEUf</h3>
+                    <div class="button-group">
+                        <button id="btnExpandHeight">Распахнуть на всю высоту </button>
+                        <button id="btnResetSize">Сбросить размер </button>
+                    </div>
+                    <div class="output-console" id="consoleExpand"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="task-section">
+            <div class="section-header"> 8. Ширина полосы прокрутки </div>
+            <div class="section-content">
+                <div class="demo-element-area">
+                    <div class="code-badge">
+                         Динамический расчет: создаётся временный div с overflow: scroll
+                    </div>
+                </div>
+                <div class="buttons-area">
+                    <h3> №1 ⊗jsSpMESW</h3>
+                    <div class="button-group">
+                        <button id="btnGetScrollbarWidth">Получить ширину полосы прокрутки</button>
+                    </div>
+                    <div class="output-console" id="consoleScrollWidth"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="note">
+      
+    </div>
+</div>
+
+<script src="Skwwww.js"></script>
+
+</body>
+</html>
